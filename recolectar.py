@@ -8,6 +8,7 @@ Reglas del dataset:
   - Una fila por punto por corrida, aunque la consulta falle (con columna error).
     Así los huecos quedan visibles en vez de desaparecer.
   - corrida_id agrupa las 16 lecturas de una misma ejecución.
+Solo usa la biblioteca estándar de Python.
 """
 
 import csv
@@ -34,6 +35,7 @@ ZOOM = 10  # el mismo nivel con el que se validaron los puntos
 URL = f"https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/{ZOOM}/json"
 REINTENTOS = 3
 CARPETA = Path("data/lecturas")
+VENTANA_MINUTOS = int(os.environ.get("VENTANA_MINUTOS", "10"))
 
 COLUMNAS = [
     "corrida_id", "ts_utc", "ts_local", "id", "avenida", "tramo", "sentido",
@@ -77,10 +79,38 @@ def huella(coords):
     return hashlib.sha1(texto.encode()).hexdigest()[:10]
 
 
+def ultima_lectura_utc():
+    """Hora (UTC) de la lectura más reciente en los archivos de hoy y ayer, o None."""
+    hoy = datetime.now(timezone.utc).astimezone(TZ_CDMX).date()
+    ultima = None
+    for fecha in (hoy, hoy - timedelta(days=1)):
+        archivo = CARPETA / f"fecha={fecha.isoformat()}" / "lecturas.csv"
+        if not archivo.exists():
+            continue
+        with open(archivo, newline="", encoding="utf-8") as f:
+            for fila in csv.DictReader(f):
+                try:
+                    ts = datetime.fromisoformat(fila["ts_utc"])
+                except (KeyError, ValueError, TypeError):
+                    continue
+                if ultima is None or ts > ultima:
+                    ultima = ts
+    return ultima
+
+
 def main():
     key = os.environ.get("TOMTOM_API_KEY", "").strip()
     if not key:
         sys.exit("Falta TOMTOM_API_KEY (en GitHub va como secreto del repositorio).")
+
+    ultima = ultima_lectura_utc()
+    if ultima is not None and VENTANA_MINUTOS > 0:
+        bloque = VENTANA_MINUTOS * 60
+        ahora = datetime.now(timezone.utc)
+        if int(ultima.timestamp()) // bloque == int(ahora.timestamp()) // bloque:
+            print(f"Ya hay lecturas en este bloque de {VENTANA_MINUTOS} min "
+                  f"(última: {ultima.astimezone(TZ_CDMX):%H:%M:%S}); no se consulta.")
+            return
 
     with open("puntos.csv", newline="", encoding="utf-8") as f:
         puntos = [{k.strip(): (v or "").strip() for k, v in r.items()} for r in csv.DictReader(f)]

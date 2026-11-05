@@ -2,14 +2,14 @@ name: Recolectar tráfico
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # cada 10 minutos (hora UTC)
-  workflow_dispatch:          # botón "Run workflow" para correrlo a mano
+    - cron: "4-59/10 * * * *"  # minutos 4, 14, 24..
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: recolectar           # nunca dos corridas al mismo tiempo
+  group: recolectar
   cancel-in-progress: false
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Consultar TomTom
         env:
           TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
-        run: python3 recolectar.py   # el Python que ya trae la máquina de GitHub; no instala nada
+        run: python3 recolectar.py
 
       - name: Guardar lecturas en el repo
         run: |
