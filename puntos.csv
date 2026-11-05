@@ -1,25 +1,17 @@
-id,avenida,tramo,zona,lat,lon
-P01,Viaducto Miguel Alemán,Insurgentes,centro,19.401676,-99.164104
-P02,Viaducto Miguel Alemán,Calzada de Tlalpan,centro,19.403506, -99.139452
-P03,Viaducto Miguel Alemán,Calzada de la Viga,oriente,19.405334, -99.119757
-P04,Circuito Interior,Río Consulado (La Raza),norte,19.465161, -99.137147
-P05,Circuito Interior,Melchor Ocampo (Reforma),poniente,19.434103, -99.171074
-P06,Circuito Interior,Río Churubusco (General Anaya),sur,19.357522, -99.151069
-P07,Circuito Interior,Blvd. Puerto Aéreo (Terminal Aérea),oriente,19.420100, -99.096128
-P08,Calzada de Tlalpan,San Antonio Abad,centro,19.402428, -99.136727
-P09,Calzada de Tlalpan,Taxqueña,sur,19.344265, -99.144407
-P10,Calzada de Tlalpan,Estadio Azteca,sur,19.312104, -99.140877
-P11,Anillo Periférico,Chapultepec (Reforma),poniente,19.41400,-99.20300
-P12,Anillo Periférico,San Antonio,poniente,19.38600,-99.19450
-P13,Anillo Periférico,Insurgentes Sur (Perisur),sur,19.30700,-99.18100
-P14,Anillo Periférico,Oriente (Ermita Iztapalapa),oriente,19.35000,-99.06200
-P15,Avenida de los Insurgentes,Norte (La Raza),norte,19.46000,-99.14300
-P16,Avenida de los Insurgentes,Centro (Reforma),centro,19.43300,-99.15800
-P17,Avenida de los Insurgentes,Sur (Félix Cuevas),sur,19.37600,-99.17800
-P18,Eje Central Lázaro Cárdenas,Centro (Bellas Artes),centro,19.43800,-99.14100
-P19,Eje Central Lázaro Cárdenas,Sur (Viaducto),centro,19.40600,-99.14400
-P20,Paseo de la Reforma,Centro (Ángel),centro,19.42830,-99.16400
-P21,Paseo de la Reforma,Norte (Tlatelolco),norte,19.44750,-99.14300
-P22,Calzada Ignacio Zaragoza,Pantitlán,oriente,19.40950,-99.06500
-P23,Calzada Ignacio Zaragoza,Guelatao,oriente,19.38700,-99.00800
-P24,Acoxpa,Entre Tlalpan y Periférico,sur,19.29900,-99.13500
+id,avenida,tramo,sentido,lat,lon,frc_max
+C01,Avenida de los Insurgentes Sur,CU (Rectoría - Estadio Olímpico),N,19.329599,-99.189294,
+C02,Avenida de los Insurgentes Sur,CU (Rectoría - Estadio Olímpico),S,19.332284,-99.189820,
+C03,Anillo Periférico Sur,Perisur - Av. del Imán,E,19.303343,-99.181289,
+C04,Anillo Periférico Sur,Perisur - Av. del Imán,O,19.303154,-99.184202,
+C05,Avenida Universidad,Copilco,N,19.343197,-99.181348,FRC4
+C06,Avenida Universidad,Copilco,S,19.340642,-99.181981,FRC4
+C07,Eje 10 Sur,Pedro Henríquez Ureña (Santo Domingo),E,19.335980,-99.174915,FRC4
+C08,Eje 10 Sur,Pedro Henríquez Ureña (Santo Domingo),O,19.336138,-99.174926,FRC4
+C09,Miguel Ángel de Quevedo,Entre Insurgentes y Av. Universidad,E,19.347912,-99.183824,FRC3
+C10,Miguel Ángel de Quevedo,Entre Insurgentes y Av. Universidad,O,19.347999,-99.183789,FRC3
+C11,Avenida Revolución,San Ángel,N,19.344545,-99.190127,FRC4
+C12,Avenida Revolución,San Ángel,S,19.344549,-99.190261,FRC4
+C13,Avenida del Imán,Entre Insurgentes y Av. Aztecas,E,19.308899,-99.177185,FRC4
+C14,Avenida del Imán,Entre Insurgentes y Av. Aztecas,O,19.309023,-99.177250,FRC4
+C15,Calzada de Tlalpan,Taxqueña,N,19.333295,-99.140960,
+C16,Calzada de Tlalpan,Taxqueña,S,19.333176,-99.141189,

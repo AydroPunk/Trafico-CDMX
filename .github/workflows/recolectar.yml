@@ -1,0 +1,40 @@
+name: Recolectar tráfico
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # cada 10 minutos (hora UTC)
+  workflow_dispatch:          # botón "Run workflow" para correrlo a mano
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recolectar           # nunca dos corridas al mismo tiempo
+  cancel-in-progress: false
+
+jobs:
+  recolectar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Consultar TomTom
+        env:
+          TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
+        run: python3 recolectar.py   # el Python que ya trae la máquina de GitHub; no instala nada
+
+      - name: Guardar lecturas en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Sin cambios"; exit 0
+          fi
+          git commit -m "datos: lecturas $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 5
+          done
+          echo "No se pudo hacer push"; exit 1
