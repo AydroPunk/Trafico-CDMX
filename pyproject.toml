@@ -1,0 +1,9 @@
+[project]
+name = "trafico-cdmx"
+version = "0.1.0"
+requires-python = ">=3.15"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "pandas>=3.1.1",
+    "pyspark[ml,sql]==4.3.0",
+]

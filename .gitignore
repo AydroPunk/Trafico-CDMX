@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Salidas generadas
+salidas/
+
+# IDE
+.idea/
