@@ -1,9 +1,28 @@
 [project]
 name = "trafico-cdmx"
 version = "0.1.0"
+description = "Predicción de congestión en avenidas cercanas a CU con PySpark ML (Perceptrón y cadenas de Markov)"
+readme = "README.md"
 requires-python = ">=3.15"
 dependencies = [
     "matplotlib>=3.11.2",
     "pandas>=3.1.1",
     "pyspark[ml,sql]==4.3.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+# El paquete vive en trafico/ en la raíz del repo
+[tool.uv.build-backend]
+module-name = "trafico"
+module-root = ""
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
