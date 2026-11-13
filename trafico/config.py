@@ -22,14 +22,15 @@ TZ = ZoneInfo(ZONA)
 PASO_MIN = 10  # una lectura por punto cada 10 minutos
 HUECO_MAX_MIN = 15  # dos lecturas seguidas forman par solo si están a 15 min o menos
 
-# Mientras no llegue el corte final se usa lo que haya hasta ahora
-CORTE_FINAL = datetime(2026, 11, 16, 20, 0, tzinfo=TZ)
+# La recolección terminó al agotarse la cuota mensual gratuita de TomTom
+# (20,000 consultas). La última corrida completa fue el 12 nov a las 19:10.
+CORTE_FINAL = datetime(2026, 11, 12, 19, 20, tzinfo=TZ)
 CORTE = min(CORTE_FINAL, datetime.now(TZ))
 
 # Partición cronológica (fechas locales)
-INICIO_VALIDACION = date(2026, 11, 11)
-INICIO_PRUEBA = date(2026, 11, 12)
-FESTIVOS = {date(2026, 11, 16)}  # solo para reportar, no es variable del modelo
+INICIO_VALIDACION = date(2026, 11, 10)  # entrenamiento: 5 al 9 (incluye sábado y domingo)
+INICIO_PRUEBA = date(2026, 11, 11)  # validación: 10; prueba: 11 y 12
+FESTIVOS = {date(2026, 11, 16)}  # queda fuera del corte; solo se usaría para reportar
 
 # Estados de congestión con r = velocidad actual / velocidad libre
 UMBRAL_FLUIDO = 0.75  # F si r >= 0.75
