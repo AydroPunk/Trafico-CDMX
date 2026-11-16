@@ -33,7 +33,7 @@ Para cada lectura calculamos r = velocidad actual / velocidad sin tráfico. Si r
 
 ## Cómo correrlo
 
-Necesitas Java 25 (25.0.3 o posterior), python 3.15 y [uv](https://docs.astral.sh/uv/). En Windows conviene usar WSL con Ubuntu; Spark en Windows directo da muchos problemas.
+Necesitas Java 25 (25.0.3 o posterior) y [uv](https://docs.astral.sh/uv/). En Windows conviene usar WSL con Ubuntu; Spark en Windows directo da muchos problemas.
 
 ```bash
 git clone git@github.com:AydroPunk/Trafico-CDMX.git
